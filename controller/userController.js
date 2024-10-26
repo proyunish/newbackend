@@ -101,14 +101,14 @@ exports.userLogin = async (req, res) => {
             });
         }
 
-        const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+        const token = jwt.sign({ id: user._id }, "car12345", {
             expiresIn: "30d"
         });
 
-        res.cookie("carToken", token, {
-            httpOnly: true, 
-            secure: NODE_ENV === 'production' 
-        });
+        // res.cookie("carToken", token, {
+        //     httpOnly: true, 
+        //     secure: "protection" === 'production' 
+        // });
 
         return res.status(200).json({
             message: "User logged in successfully",
