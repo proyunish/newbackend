@@ -20,9 +20,9 @@ exports.userRegister = async (req, res) => {
     }
 
         const existingUserEmail = await User.findOne({ email });
-        const existingUserPhone = await User.findOne({ phone });
+        // const existingUserPhone = await User.findOne({ phone });
 
-        if (existingUserEmail || existingUserPhone) {
+        if (existingUserEmail) {
             return res.status(400).json({
                 message: "User already exists with this email or phone number",
             });
@@ -31,26 +31,24 @@ exports.userRegister = async (req, res) => {
         const hashedPassword = bcrypt.hashSync(password, 8);
 
         //generate 6 digit otp
-        const otp = crypto.randomInt(100000,999999).toString();
-        const otpExpiry = new Date(Date.now() + 10*60*1000); // its valid for 10 min
+        // const otp = crypto.randomInt(100000,999999).toString();
+        // const otpExpiry = new Date(Date.now() + 10*60*1000); // its valid for 10 min
 
         const user = await User.create({
             fullName,
             email,
             phone,
             password: hashedPassword,
-            otp,
-            otpExpiry,
-            isVerified : false
+            isVerified : true
         });
-        sendEmail({
-            email,
-            subject: "Verify your email",
-            text: `Your OTP is ${otp} `
-        })
+        // sendEmail({
+        //     email,
+        //     subject: "Verify your email",
+        //     text: `Your OTP is ${otp} `
+        // })
 
         return res.status(200).json({
-            message: "OTP sent to your email. Please verify your account."
+            message: "Register Successfully"
         });
 };
 
@@ -101,7 +99,7 @@ exports.userLogin = async (req, res) => {
             });
         }
 
-        const token = jwt.sign({ id: user._id }, "car12345", {
+        const token = jwt.sign({ id: user._id }, "12345", {
             expiresIn: "30d"
         });
 

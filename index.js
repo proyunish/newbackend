@@ -16,6 +16,7 @@ const userRoute = require("./routes/userRoute.js")
 const kycRoute = require("./routes/kycRoute.js")
 const profileRoute = require('./routes/profileRoute.js')
 const carDetail = require('./routes/carDetail.js')
+const meetingRoute = require('./routes/meetingRoute.js')
 
 const cookies = require('cookie-parser');
 app.use(cookies())
@@ -30,6 +31,7 @@ app.use("/user",userRoute);
 app.use("/user/kyc",kycRoute);
 app.use("/user/profile",profileRoute);
 app.use("/car/",carDetail);
+app.use("/meeting/",meetingRoute);
 
 app.get("/",(req,res)=>{
     res.send("WELCOME");

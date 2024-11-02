@@ -77,9 +77,6 @@ exports.createKyc = async (req, res) => {
 };
 
 
-
-
-
 exports.verifyKyc = async (req, res) => {
         const kycId = req.params.kycId;
         const { status, rejectionReason } = req.body;

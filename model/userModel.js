@@ -18,12 +18,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    otp:{
-        type: String
-    },
-    otpExpiry:{
-        type : Date
-    },
+    // otp:{
+    //     type: String
+    // },
+    // otpExpiry:{
+    //     type : Date
+    // },
     isVerified:{
         type:Boolean,
         default: false

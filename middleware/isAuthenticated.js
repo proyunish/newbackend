@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util'); 
 const User = require('../model/userModel');
-const JWT_SECRET = process.env.JWT_SECRET; 
+const JWT_SECRET = "12345"; 
 
 exports.isAuthenticated = async (req, res, next) => {
     try {
