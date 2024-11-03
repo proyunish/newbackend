@@ -2,14 +2,14 @@ const Blogs = require("../model/BlogMode");
 
 exports.createBlogs = async (req, res) => {
   try {
-    const { title, content } = req.body;
-    const imageUrl = req.file?.path;  // Cloudinary URL after upload
+    const { title, content,imageUrl } = req.body;
+     // Cloudinary URL after upload
 console.log(imageUrl)
     if (!title || !content || !imageUrl) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    const newBlog = new Blog({ title, content, imageUrl });
+    const newBlog = new Blogs({ title, content, imageUrl });
     await newBlog.save();
 
     res.status(201).json({ message: "Blog created successfully", blog: newBlog });
