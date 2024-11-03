@@ -18,3 +18,24 @@ console.log(imageUrl)
     res.status(500).json({ error: "Failed to create blog" });
   }
   };
+
+  exports.getBlogs = async (req, res) => {
+    try {
+      const blogs = await Blogs.find();
+      res.status(200).json(blogs);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch blogs" });
+    }
+  };
+
+  exports.deleteBlogs= async (req, res) => {
+    try {
+      const deletedBlog = await Blogs.findByIdAndDelete(req.params.id);
+      if (!deletedBlog) {
+        return res.status(404).json({ error: "Blog not found" });
+      }
+      res.status(200).json({ message: "Blog deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete blog" });
+    }
+  };
