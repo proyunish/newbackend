@@ -17,6 +17,7 @@ const kycRoute = require("./routes/kycRoute.js")
 const profileRoute = require('./routes/profileRoute.js')
 const carDetail = require('./routes/carDetail.js')
 const meetingRoute = require('./routes/meetingRoute.js')
+const blogRoute = require('./routes/blogRoute.js')
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000', 'https://canaries.ae'];
 
 const cookies = require('cookie-parser');
@@ -39,6 +40,7 @@ app.use("/user/kyc",kycRoute);
 app.use("/user/profile",profileRoute);
 app.use("/car/",carDetail);
 app.use("/meeting/",meetingRoute);
+app.use("/blog/",blogRoute);
 
 app.get("/",(req,res)=>{
     res.send("WELCOME");
