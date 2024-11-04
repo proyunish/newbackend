@@ -30,6 +30,7 @@ console.log(imageUrl)
 
   exports.deleteBlogs= async (req, res) => {
     try {
+      console.log(req.params.id)
       const deletedBlog = await Blogs.findByIdAndDelete(req.params.id);
       if (!deletedBlog) {
         return res.status(404).json({ error: "Blog not found" });

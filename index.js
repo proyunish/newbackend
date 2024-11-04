@@ -18,7 +18,8 @@ const profileRoute = require('./routes/profileRoute.js')
 const carDetail = require('./routes/carDetail.js')
 const meetingRoute = require('./routes/meetingRoute.js')
 const blogRoute = require('./routes/blogRoute.js')
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000', 'https://canaries.ae'];
+const subscribeRoute = require('./routes/subscriber.js')
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000', 'https://canaries.ae','https://canariesdashboard.netlify.app'];
 
 const cookies = require('cookie-parser');
 app.use(cookies())
@@ -35,12 +36,14 @@ app.use(cors({
     credentials: true,
 }));
 //routes
+// 
 app.use("/user",userRoute);
 app.use("/user/kyc",kycRoute);
 app.use("/user/profile",profileRoute);
 app.use("/car/",carDetail);
 app.use("/meeting/",meetingRoute);
 app.use("/blog/",blogRoute);
+app.use("/mail/",subscribeRoute);
 
 app.get("/",(req,res)=>{
     res.send("WELCOME");
