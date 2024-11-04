@@ -27,7 +27,14 @@ console.log(imageUrl)
       res.status(500).json({ error: "Failed to fetch blogs" });
     }
   };
-
+  exports.getSpecificBlogs = async (req, res) => {
+    try {
+      const blogs = await Blogs.findOne({_id:req.params.id});
+      res.status(200).json(blogs);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch blogs" });
+    }
+  };
   exports.deleteBlogs= async (req, res) => {
     try {
       console.log(req.params.id)
